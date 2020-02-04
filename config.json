@@ -1,0 +1,11 @@
+{
+  "url": "https://www.tianqiapi.com/api?version=epidemic&appid=23035354&appsecret=8YvlPNrz",
+  "msyqlConfig": {
+    "database": "newCoronavirus",
+    "username": "ddz",
+    "password": "123456",
+    "dialect": "mysql",
+    "host": "192.168.0.117",
+    "port": "3306"
+  }
+}
