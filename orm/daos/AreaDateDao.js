@@ -16,27 +16,27 @@ class AreaDateDao {
    * @memberof AreaDateDao
    * @returns {Promise<object>} 省份病毒数据
    */
-  async findOrCreateAreaDate(date, areaId, confirmedCount, suspectedCount, curedCount, deadCount) {
-    try {
-      const areaDate = await this.model.findOrCreate({
-        where: {
-          createdAt: date,
-          areaId,
-        },
-        defaults: {
-          areaId,
-          confirmedCount,
-          suspectedCount,
-          curedCount,
-          deadCount,
-        },
-      });
-      return areaDate;
-    } catch (error) {
-      console.error('findOrCreateAreaDate error', error);
-      throw error;
-    }
+  (date, areaId, confirmedCount, suspectedCount, curedCount, deadCount) {
+  try {
+    const areaDate = await this.model.findOrCreate({
+      where: {
+        createdAt: date,
+        areaId,
+      },
+      defaults: {
+        areaId,
+        confirmedCount,
+        suspectedCount,
+        curedCount,
+        deadCount,
+      },
+    });
+    return areaDate;
+  } catch (error) {
+    console.error('findOrCreateAreaDate error', error);
+    throw error;
   }
+}
 }
 
 module.exports = AreaDateDao;
