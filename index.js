@@ -5,7 +5,7 @@ const NewCoronavirusReptilia = require('./lib');
 let count = 1;
 
 // 病毒爬虫任务
-function abc() {
+function newCoronavirusJob() {
   NewCoronavirusReptilia.saveNewCoronavirusDate().then(() => {
     console.log(`第${count}数据获取完成,时间${new Date()}`);
   }).catch((err) => {
@@ -16,7 +16,7 @@ function abc() {
 }
 
 // 启动定时任务
-setInterval(abc, 30 * 60 * 1000);
+setInterval(newCoronavirusJob, 30 * 60 * 1000);
 
 // 启动时，马上获取一次
-abc();
+newCoronavirusJob();
