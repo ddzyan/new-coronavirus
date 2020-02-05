@@ -33,7 +33,7 @@ const sequelize = new Sequelize(
       },
       timestamps: true,
     },
-    operatorsAliases: false,
+    // operatorsAliases: false,
   },
 );
 
