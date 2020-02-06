@@ -14,8 +14,8 @@ npm i
 // 同步表配置
 npm run syncDb
 
-// 启动任务
-npm start
+// 启动任务,其中10为任务间隔时间
+node ./index.js 10
 ```
 
 ## 更新记录
