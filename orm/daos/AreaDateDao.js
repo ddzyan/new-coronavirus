@@ -1,4 +1,5 @@
 const models = require('../models');
+const logger = require('../../utils/Logger')();
 
 class AreaDateDao {
   constructor() {
@@ -8,19 +9,24 @@ class AreaDateDao {
   /**
    * @class AreaDateDao
    * @description 保存省份病毒数据
-   * @param {number} areaId
-   * @param {number} confirmedCount
-   * @param {number} suspectedCount
-   * @param {number} curedCount
-   * @param {number} deadCount
+   * @param {object} param -  sql 参数
+   * @param {string} param.createdAt - 日期
+   * @param {number} param.areaId - 省份iD
+   * @param {number} param.confirmedCount - 确认人数
+   * @param {number} param.suspectedCount - 疑似人数
+   * @param {number} param.curedCount - 健康人数
+   * @param {number} param.deadCount - 死亡人数
    * @memberof AreaDateDao
    * @returns {Promise<object>} 省份病毒数据
    */
-  async findOrCreateAreaDate(date, areaId, confirmedCount, suspectedCount, curedCount, deadCount) {
+  async findOrCreateAreaDate(param) {
     try {
+      const {
+        createdAt, areaId, confirmedCount, suspectedCount, curedCount, deadCount,
+      } = param;
       const areaDate = await this.model.findOrCreate({
         where: {
-          createdAt: date,
+          createdAt,
           areaId,
         },
         defaults: {
@@ -29,11 +35,13 @@ class AreaDateDao {
           suspectedCount,
           curedCount,
           deadCount,
+          createdAt,
         },
       });
       return areaDate;
     } catch (error) {
-      console.error('findOrCreateAreaDate error', error);
+      error.data = param;
+      logger.error('findOrCreateAreaDate error', error);
       throw error;
     }
   }

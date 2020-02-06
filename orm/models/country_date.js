@@ -13,24 +13,40 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       default: 0,
       comment: '确认人数',
+      set(val) {
+        val = val instanceof Number ? val : 0;
+        this.setDataValue('confirmedCount', val);
+      },
     },
     suspectedCount: {
       type: DataTypes.INTEGER(7).UNSIGNED,
       allowNull: false,
       default: 0,
       comment: '疑似人数',
+      set(val) {
+        val = val instanceof Number ? val : 0;
+        this.setDataValue('suspectedCount', val);
+      },
     },
     curedCount: {
       type: DataTypes.INTEGER(7).UNSIGNED,
       allowNull: false,
       default: 0,
       comment: '健康人数',
+      set(val) {
+        val = val instanceof Number ? val : 0;
+        this.setDataValue('curedCount', val);
+      },
     },
     deadCount: {
       type: DataTypes.INTEGER(7).UNSIGNED,
       allowNull: false,
       default: 0,
       comment: '死亡人数',
+      set(val) {
+        val = val instanceof Number ? val : 0;
+        this.setDataValue('deadCount', val);
+      },
     },
   });
 

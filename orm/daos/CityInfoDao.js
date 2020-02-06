@@ -1,4 +1,5 @@
 const models = require('../models');
+const logger = require('../../utils/Logger')();
 
 class CityInfoDao {
   constructor() {
@@ -9,13 +10,15 @@ class CityInfoDao {
   /**
    * @class CityInfoDao
    * @description 保存城市信息
-   * @param {number} areaId 省份ID
-   * @param {string} cityName 城市名称
+   * @param {object} params - sql参数
+   * @param {number} params.areaId 省份ID
+   * @param {string} params.cityName 城市名称
    * @returns {Promise<object>} 城市信息
    * @memberof CityInfoDao
    */
-  async findOrCreateCity(areaId, cityName) {
+  async findOrCreateCity(params) {
     try {
+      const { areaId, cityName } = params;
       const cityInfoResult = await this.model.findOrCreate({
         where: { areaId, cityName },
         defaults: {
@@ -25,7 +28,8 @@ class CityInfoDao {
 
       return Array.isArray(cityInfoResult) && cityInfoResult.length > 0 ? cityInfoResult[0] : null;
     } catch (error) {
-      console.error('findOrCreateArea error', error);
+      error.data = params;
+      logger.error('findOrCreateArea error', error);
       throw error;
     }
   }
