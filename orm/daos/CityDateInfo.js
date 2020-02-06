@@ -9,7 +9,7 @@ class CityDateInfo {
   /**
    * @class CityDateInfo
    * @description 保存城市病毒数据
-   * @param {object} params - sql参数
+   * @param {object[]} params - sql参数
    * @param {number} params.cityId - 城市id
    * @param {string} params.createdAt - 创建时间
    * @param {number} params.confirmedCount 确认人数
@@ -21,18 +21,7 @@ class CityDateInfo {
    */
   async findOrCreateCityDate(params) {
     try {
-      const {
-        cityId, createdAt, confirmedCount, suspectedCount, curedCount, deadCount,
-      } = params;
-      const cityDateResult = await this.model.findOrCreate({
-        where: {
-          createdAt,
-          cityId,
-        },
-        defaults: {
-          cityId, createdAt, confirmedCount, suspectedCount, curedCount, deadCount,
-        },
-      });
+      const cityDateResult = await this.model.bulkCreate(params);
       return Array.isArray(cityDateResult) && cityDateResult.length > 0 ? cityDateResult[0] : null;
     } catch (error) {
       error.data = params;
