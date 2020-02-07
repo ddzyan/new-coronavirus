@@ -11,12 +11,11 @@ log4js.configure({
 // 日志输出
 class Logger {
   constructor(instance) {
-    this.loggerInstance = instance || console;
+    this.loggerInstance = instance;
   }
 
   error(name = '', err) {
-    const date = new Date();
-    let logText = `${date.toLocaleString()} `;
+    let logText = '';
     if (err instanceof Error) {
       logText += `${name} name: ${err.name} msg:${err.message}\n`;
       logText += `stack :${err.stack}\n`;
@@ -29,10 +28,8 @@ class Logger {
   }
 
   debug(msg) {
-    const date = new Date();
     msg = msg instanceof String ? msg : JSON.stringify(msg);
-    const logText = `${date.toLocaleString()} ${msg} `;
-    this.loggerInstance.debug(logText);
+    this.loggerInstance.debug(msg);
   }
 }
 
