@@ -1,3 +1,12 @@
+const log4js = require('log4js');
+const path = require('path');
+
+log4js.configure({
+  appenders: {
+    newCoronavirus: { type: 'dateFile', filename: path.join(__dirname, '../logger.log'), daysToKeep: 10 }, // default option pattern: '.yyyy-MM-dd.log',
+  },
+  categories: { default: { appenders: ['newCoronavirus'], level: 'trace' } },
+});
 
 // 日志输出
 class Logger {
@@ -31,7 +40,8 @@ class Logger {
 let logger;
 module.exports = (instance) => {
   if (!logger) {
-    logger = new Logger(instance);
+    const logger4js = log4js.getLogger('newCoronavirus');
+    logger = new Logger(instance || logger4js);
   }
   return logger;
 };

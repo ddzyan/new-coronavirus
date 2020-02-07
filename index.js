@@ -1,6 +1,12 @@
 const NewCoronavirusReptilia = require('./lib');
 const logger = require('./utils/Logger')();
 
+/*
+* TODO
+* 1.使用crontab 定时任务
+* 2.采用logger将控制台信息输出带本地日志文件中
+*/
+
 const time = process.argv[2] || 30;
 console.log(`设定任务间隔时间为${time}分钟`);
 // TODO 判断数据库连接是否正常
