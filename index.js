@@ -1,8 +1,6 @@
 const NewCoronavirusReptilia = require('./lib');
 const logger = require('./utils/Logger')();
 
-const time = process.argv[2] || 30;
-logger.debug(`设定任务间隔时间为${time}分钟`);
 // TODO 判断数据库连接是否正常
 const startTime = new Date();
 // 病毒爬虫任务
