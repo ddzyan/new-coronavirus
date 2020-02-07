@@ -13,7 +13,6 @@ function newCoronavirusJob() {
     logger.error('newCoronavirusJob', err);
   });
 }
-// 启动时，马上获取一次
 newCoronavirusJob();
 // 启动定时任务
 // setInterval(newCoronavirusJob, Number.parseInt(time) * 60 * 1000);
