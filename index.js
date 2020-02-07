@@ -1,7 +1,7 @@
 const NewCoronavirusReptilia = require('./lib');
 const logger = require('./utils/Logger')();
 
-const time = process.argv[2];
+const time = process.argv[2] || 30;
 console.log(`设定任务间隔时间为${time}分钟`);
 // TODO 判断数据库连接是否正常
 let count = 1;
@@ -16,9 +16,7 @@ function newCoronavirusJob() {
     count++;
   });
 }
-
-// 启动定时任务
-setInterval(newCoronavirusJob, Number.parseInt(time) * 60 * 1000);
-
 // 启动时，马上获取一次
 newCoronavirusJob();
+// 启动定时任务
+setInterval(newCoronavirusJob, Number.parseInt(time) * 60 * 1000);

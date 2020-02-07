@@ -25,28 +25,28 @@ class CountryDateDao {
  *
  * @description 保存全国病毒数据
  * @param {object} params - sql参数
- * @param {string} params.date 获取时间
- * @param {number} params.diagnosed 确认人数
- * @param {number} params.suspect 疑似人数
- * @param {number} params.death 死亡人数
- * @param {number} params.cured 健康人数
+ * @param {string} params.createdAt 获取时间
+ * @param {number} params.confirmedCount 确认人数
+ * @param {number} params.suspectedCount 疑似人数
+ * @param {number} params.deadCount 死亡人数
+ * @param {number} params.curedCount 健康人数
  * @memberof CountryDateDao
  * @returns {Promise<Object>} 保存数据是否已经添加
  */
   async findOrCreateCountryDate(params) {
     try {
       const {
-        createdAt, diagnosed, suspect, death, cured,
+        createdAt, confirmedCount, suspectedCount, curedCount, deadCount,
       } = params;
       const countryDate = await this.model.findOrCreate({
         where: {
           createdAt,
         },
         defaults: {
-          confirmedCount: diagnosed,
-          suspectedCount: suspect,
-          curedCount: death,
-          deadCount: cured,
+          confirmedCount,
+          suspectedCount,
+          curedCount,
+          deadCount,
           createdAt,
         },
 

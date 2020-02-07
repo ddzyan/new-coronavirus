@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       default: 0,
       comment: '确认人数',
       set(val) {
-        val = val instanceof Number ? val : 0;
+        val = typeof (val) === 'number' ? val : 0;
         this.setDataValue('confirmedCount', val);
       },
     },
@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       default: 0,
       comment: '疑似人数',
       set(val) {
-        val = val instanceof Number ? val : 0;
+        val = typeof (val) === 'number' ? val : 0;
         this.setDataValue('suspectedCount', val);
       },
     },
@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
       default: 0,
       comment: '健康人数',
       set(val) {
-        val = val instanceof Number ? val : 0;
+        val = typeof (val) === 'number' ? val : 0;
         this.setDataValue('curedCount', val);
       },
     },
@@ -44,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
       default: 0,
       comment: '死亡人数',
       set(val) {
-        val = val instanceof Number ? val : 0;
+        val = typeof (val) === 'number' ? val : 0;
         this.setDataValue('deadCount', val);
       },
     },

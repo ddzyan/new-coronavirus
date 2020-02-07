@@ -1,5 +1,10 @@
 {
-  "url": "https://www.tianqiapi.com/api?version=epidemic&appid=23035354&appsecret=8YvlPNrz",
+  "tianqiapi": {
+    "url": "https://www.tianqiapi.com/api?",
+    "version": "epidemic",
+    "appid": "23035352",
+    "appsecret": "8YvlPNrz"
+  },
   "msyqlConfig": {
     "database": "newCoronavirus",
     "username": "ddz",
